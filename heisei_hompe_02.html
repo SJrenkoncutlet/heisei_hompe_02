@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffb5d7">
+  <title>☆★ ゆめかわ☆ほむぺ ★☆</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "ＭＳ Ｐゴシック", "MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+      background: #ffe8f2;
+      color: #5b3150;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 18px 10px 32px;
+      background:
+        radial-gradient(circle, #fff 1px, transparent 1.5px) 0 0 / 14px 14px,
+        #ffe8f2;
+    }
+
+    .phone {
+      width: min(100%, 390px);
+      margin: 0 auto;
+      padding: 12px;
+      border: 3px double #f080b5;
+      border-radius: 8px;
+      background: #fffafd;
+      box-shadow: 0 5px 18px #d981aa55;
+    }
+
+    .top-note, .counter, footer { text-align: center; }
+    .top-note { font-size: 11px; color: #98617f; }
+
+    h1 {
+      margin: 8px 0;
+      color: #e44c9a;
+      font-size: clamp(22px, 7vw, 29px);
+      text-align: center;
+      text-shadow: 2px 2px #ffd6e9;
+    }
+
+    .subtitle { text-align: center; font-size: 12px; }
+
+    .ticker {
+      overflow: hidden;
+      margin: 12px 0;
+      padding: 6px 0;
+      border-block: 1px dashed #ed81b1;
+      color: #d33f8c;
+      white-space: nowrap;
+    }
+
+    .ticker span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 13s linear infinite;
+    }
+
+    .blink { animation: blink 1s steps(2, start) infinite; color: #ea438f; }
+
+    @keyframes ticker { to { transform: translateX(-100%); } }
+    @keyframes blink { to { visibility: hidden; } }
+
+    .welcome {
+      padding: 10px;
+      border: 1px dashed #f2a0c4;
+      background: #fff0f7;
+      font-size: 13px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .section-title {
+      margin: 16px 0 8px;
+      padding: 5px 8px;
+      border-left: 5px solid #ee75aa;
+      background: linear-gradient(90deg, #ffe0ee, #fffafd);
+      color: #bd3679;
+      font-size: 16px;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu a {
+      display: block;
+      padding: 8px 5px;
+      border: 1px solid #f3a5c9;
+      background: #fff;
+      color: #a63b77;
+      font-size: 13px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .menu a:hover, .menu a:focus-visible { background: #ffe4f0; }
+    .menu .bbs-link { background: #ffe4f0; font-weight: bold; }
+
+    .board {
+      padding: 10px;
+      border: 2px ridge #f3a5c9;
+      background: #fff;
+    }
+
+    .board-intro { margin: 0 0 8px; font-size: 12px; line-height: 1.6; }
+    .connection { margin: 0 0 10px; color: #80546d; font-size: 11px; }
+
+    label { display: block; margin: 8px 0 4px; font-size: 12px; }
+
+    input, textarea {
+      width: 100%;
+      padding: 7px;
+      border: 1px solid #df9cba;
+      border-radius: 2px;
+      background: #fffafd;
+      color: #4a3040;
+      font: inherit;
+      font-size: 13px;
+    }
+
+    textarea { min-height: 74px; resize: vertical; }
+
+    .submit {
+      display: block;
+      margin: 9px auto 0;
+      padding: 7px 18px;
+      border: 2px outset #f3a5c9;
+      background: #ffe1ef;
+      color: #8f2e65;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .submit:disabled { cursor: wait; opacity: .65; }
+    .status { min-height: 1.5em; margin: 8px 0 0; font-size: 11px; text-align: center; }
+
+    .posts { margin: 10px 0 0; padding: 0; list-style: none; }
+
+    .post {
+      margin-top: 8px;
+      padding: 8px;
+      border: 1px dotted #e99abd;
+      background: #fff8fc;
+      overflow-wrap: anywhere;
+    }
+
+    .post-head { color: #b3427c; font-size: 11px; }
+    .post-message { margin: 5px 0 0; font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+    .empty { color: #866c7c; font-size: 12px; text-align: center; }
+    footer { margin-top: 15px; color: #98617f; font-size: 10px; line-height: 1.7; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <div class="top-note">☆ ようこそ！あなたは <span id="visitor-count">000001</span> 人目のお客様 ☆</div>
+    <h1>☆★ ゆめかわ☆ほむぺ ★☆</h1>
+    <div class="subtitle">Since 2026.11.14　☆　管理人：ゆめ</div>
+
+    <div class="ticker" aria-label="お知らせ">
+      <span>☆★☆ あそびにきてくれてありがとう！ BBSにカキコしてね♪ ☆★☆ ゆっくりしていってね ☆★☆</span>
+    </div>
+
+    <div class="welcome">
+      <span class="blink">★ Welcome ★</span><br>
+      平成レトロなほむぺへようこそ♪<br>
+      足あと代わりにBBSへどうぞ！
+    </div>
+
+    <h2 class="section-title">★ MENU ★</h2>
+    <nav aria-label="メニュー">
+      <ul class="menu">
+        <li><a class="bbs-link" href="#bbs">✉ BBS（掲示板）</a></li>
+        <li><a class="coming-soon" href="#kiriban">☆ キリ番</a></li>
+        <li><a class="coming-soon" href="#diary">☀ 日記</a></li>
+        <li><a class="coming-soon" href="#omikuji">☆ おみくじ</a></li>
+        <li><a class="coming-soon" href="#links">♡ リンク集</a></li>
+      </ul>
+    </nav>
+
+    <section id="bbs" aria-labelledby="bbs-title">
+      <h2 class="section-title" id="bbs-title">✉ BBS（掲示板）</h2>
+      <div class="board">
+        <p class="board-intro">ひとこと残していってね♪<br>なまえとメッセージを入力して「カキコする！」</p>
+        <p class="connection" id="connection">掲示板を準備しています…</p>
+        <form id="post-form">
+          <label for="nickname">なまえ（20文字まで）</label>
+          <input id="nickname" name="nickname" maxlength="20" required autocomplete="nickname" placeholder="なまえ">
+          <label for="message">メッセージ（300文字まで）</label>
+          <textarea id="message" name="message" maxlength="300" required placeholder="メッセージを書いてね♪"></textarea>
+          <button class="submit" id="submit-button" type="submit">カキコする！</button>
+        </form>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+        <ul class="posts" id="posts" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <footer>
+      ☆★☆ またきてね！ ☆★☆<br>
+      画像・文章の無断転載はご遠慮ください
+    </footer>
+  </main>
+
+  <script type="module">
+    const form = document.querySelector("#post-form");
+    const nicknameInput = document.querySelector("#nickname");
+    const messageInput = document.querySelector("#message");
+    const submitButton = document.querySelector("#submit-button");
+    const postsList = document.querySelector("#posts");
+    const status = document.querySelector("#status");
+    const connection = document.querySelector("#connection");
+
+   // Your web app's Firebase configuration
+  const firebaseConfig = {
+  apiKey: "AIzaSyCIuqrSXKBrfltquAnUQNhQvilA0ZJFDyw",
+  authDomain: "heisei-bbs.firebaseapp.com",
+  projectId: "heisei-bbs",
+  storageBucket: "heisei-bbs.firebasestorage.app",
+  messagingSenderId: "418153985858",
+  appId: "1:418153985858:web:33d8c0c93ac746247cfadb"
+};
+
+    function renderPosts(posts) {
+      postsList.replaceChildren();
+      if (posts.length === 0) {
+        const empty = document.createElement("li");
+        empty.className = "empty";
+        empty.textContent = "まだ投稿はありません。最初のカキコをどうぞ♪";
+        postsList.append(empty);
+        return;
+      }
+
+      for (const post of posts) {
+        const item = document.createElement("li");
+        item.className = "post";
+        const head = document.createElement("div");
+        head.className = "post-head";
+        const date = post.createdAt instanceof Date ? post.createdAt : new Date(post.createdAt || Date.now());
+        head.textContent = `${post.nickname} さん　${date.toLocaleString("ja-JP")}`;
+        const body = document.createElement("p");
+        body.className = "post-message";
+        body.textContent = post.message;
+        item.append(head, body);
+        postsList.append(item);
+      }
+    }
+
+    function getLocalPosts() {
+      try {
+        const saved = JSON.parse(localStorage.getItem("heisei-hompe-bbs") || "[]");
+        return Array.isArray(saved) ? saved : [];
+      } catch (error) {
+        console.error("掲示板の保存データを読み込めませんでした。", error);
+        status.textContent = "保存データを読み込めませんでした。ブラウザーのコンソールをご確認ください。";
+        return [];
+      }
+    }
+
+    function saveLocalPost(post) {
+      const posts = [post, ...getLocalPosts()].slice(0, 50);
+      localStorage.setItem("heisei-hompe-bbs", JSON.stringify(posts));
+      renderPosts(posts);
+    }
+
+    const isFirebaseConfigured = Object.values(firebaseConfig).every(
+      value => value && !value.startsWith("YOUR_")
+    );
+
+    let addPost;
+    if (isFirebaseConfigured) {
+      try {
+        const [{ initializeApp }, firestore] = await Promise.all([
+          import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"),
+          import("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js")
+        ]);
+        const app = initializeApp(firebaseConfig);
+        const db = firestore.getFirestore(app);
+        const postsQuery = firestore.query(
+          firestore.collection(db, "bbs-posts"),
+          firestore.orderBy("createdAt", "desc"),
+          firestore.limit(50)
+        );
+
+        firestore.onSnapshot(postsQuery, snapshot => {
+          renderPosts(snapshot.docs.map(doc => {
+            const data = doc.data();
+            return { ...data, createdAt: data.createdAt?.toDate() ?? new Date() };
+          }));
+        }, error => {
+          console.error("Firebase掲示板の読み込みに失敗しました。", error);
+          status.textContent = "掲示板を読み込めませんでした。Firebaseの設定とFirestoreルールをご確認ください。";
+        });
+
+        addPost = post => firestore.addDoc(
+          firestore.collection(db, "bbs-posts"),
+          { ...post, createdAt: firestore.serverTimestamp() }
+        );
+        connection.textContent = "Firebase掲示板に接続中";
+      } catch (error) {
+        console.error("Firebaseに接続できませんでした。", error);
+        connection.textContent = "Firebaseに接続できません。設定を確認してください。";
+        status.textContent = "Firebaseの初期化に失敗しました。Firebase設定をご確認ください。";
+      }
+    } else {
+      connection.textContent = "おためし掲示板（投稿はこのブラウザーに保存されます）";
+      renderPosts(getLocalPosts());
+      addPost = saveLocalPost;
+    }
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!addPost) {
+        status.textContent = "掲示板が利用できません。接続状態をご確認ください。";
+        return;
+      }
+
+      const nickname = nicknameInput.value.trim();
+      const message = messageInput.value.trim();
+      if (!nickname || !message) {
+        status.textContent = "なまえとメッセージを入力してください。";
+        return;
+      }
+
+      submitButton.disabled = true;
+      status.textContent = "";
+      try {
+        await addPost({ nickname, message });
+        form.reset();
+        status.textContent = "カキコありがとう♪";
+      } catch (error) {
+        console.error("掲示板への投稿に失敗しました。", error);
+        status.textContent = "投稿できませんでした。接続やFirebaseの設定をご確認ください。";
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    document.querySelectorAll(".coming-soon").forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        status.textContent = "このページは準備中です♪";
+      });
+    });
+  </script>
+</body>
+</html>
