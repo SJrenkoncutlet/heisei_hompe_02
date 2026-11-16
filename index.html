@@ -113,6 +113,21 @@
     .menu a:hover, .menu a:focus-visible { background: #321143; outline: 1px solid #62f7ff; }
     .menu .bbs-link { border-color: #00eaff; color: #70fbff; box-shadow: 0 0 8px #00dfff88; font-weight: bold; }
 
+    .feature-box {
+      padding: 10px;
+      border: 1px ridge #a950ff;
+      background: #10091b;
+      box-shadow: 0 0 9px #a000ff44;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .feature-box p { margin: 4px 0; }
+    .counter-number { color: #fff36b; font-size: 20px; letter-spacing: 2px; text-shadow: 0 0 8px #ffe600; }
+    .feature-note { color: #c6b3d5; font-size: 10px; }
+    .fortune-result { min-height: 3em; margin: 10px 0 0; color: #72ff8d; text-shadow: 0 0 7px #00ff4c; font-weight: bold; }
+
     .board {
       padding: 10px;
       border: 2px ridge #ff39c8;
@@ -185,30 +200,49 @@
     <div class="subtitle">Since 2026.11.14　☆　管理人：ゆめ</div>
 
     <div class="ticker" aria-label="お知らせ">
-      <span>☆★☆ あそびにきてくれてありがとう！ BBSにカキコしてね♪ ☆★☆ ゆっくりしていってね ☆★☆</span>
+      <span>☆★☆ あそびにきてくれてぁりがとぉ！ BBSにカキコしてね♪ ☆★☆ ゆっくりしてってね ☆★☆</span>
     </div>
 
     <div class="welcome">
       <span class="blink">★ Welcome ★</span><br>
       平成レトロなほむぺへようこそ♪<br>
-      足あと代わりにBBSへどうぞ！
+      足あと代わりにBBSへどぉぞ！<br>
+      <span>今日もアゲ↑でぃこっ☆</span>
     </div>
 
     <h2 class="section-title">★ MENU ★</h2>
     <nav aria-label="メニュー">
       <ul class="menu">
         <li><a class="bbs-link" href="#bbs">✉ BBS（掲示板）</a></li>
-        <li><a class="coming-soon" href="#kiriban">☆ キリ番</a></li>
+        <li><a href="#kiriban">☆ キリ番</a></li>
         <li><a class="coming-soon" href="#diary">☀ 日記</a></li>
-        <li><a class="coming-soon" href="#omikuji">☆ おみくじ</a></li>
+        <li><a href="#omikuji">☆ ぉみくじ</a></li>
         <li><a class="coming-soon" href="#links">♡ リンク集</a></li>
       </ul>
     </nav>
 
+    <section id="kiriban" aria-labelledby="kiriban-title">
+      <h2 class="section-title" id="kiriban-title">☆ キリ番カウンター ☆</h2>
+      <div class="feature-box">
+        <p>ぁなたゎ <span class="counter-number" id="kiriban-count">000001</span> 人目の訪問者だょ☆</p>
+        <p id="kiriban-message" aria-live="polite">次のキリ番まで、あと99人！</p>
+        <p class="feature-note">※カウンターはこのブラウザー内でカウントされます。</p>
+      </div>
+    </section>
+
+    <section id="omikuji" aria-labelledby="omikuji-title">
+      <h2 class="section-title" id="omikuji-title">☆ 今日のぉみくじ ☆</h2>
+      <div class="feature-box">
+        <p>今日の運勢を占っちゃぉ♪</p>
+        <button class="submit" id="omikuji-button" type="button">ぉみくじを引く！</button>
+        <p class="fortune-result" id="omikuji-result" aria-live="polite">ボタンを押してね☆</p>
+      </div>
+    </section>
+
     <section id="bbs" aria-labelledby="bbs-title">
       <h2 class="section-title" id="bbs-title">✉ BBS（掲示板）</h2>
       <div class="board">
-        <p class="board-intro">ひとこと残していってね♪<br>なまえとメッセージを入力して「カキコする！」</p>
+        <p class="board-intro">ひとこと残してってね♪<br>なまえとメッセージを入力して「カキコする！」</p>
         <p class="connection" id="connection">掲示板を準備しています…</p>
         <form id="post-form">
           <label for="nickname">なまえ（20文字まで）</label>
@@ -236,6 +270,38 @@
     const postsList = document.querySelector("#posts");
     const status = document.querySelector("#status");
     const connection = document.querySelector("#connection");
+
+    // Visit count is intentionally stored locally in this browser, not shared across visitors.
+    let visitCount = 1;
+    try {
+      visitCount = Math.max(0, Number(localStorage.getItem("heisei-hompe-visits")) || 0) + 1;
+      localStorage.setItem("heisei-hompe-visits", String(visitCount));
+    } catch (error) {
+      console.warn("訪問カウンターを保存できませんでした。", error);
+    }
+    document.querySelector("#visitor-count").textContent = String(visitCount).padStart(6, "0");
+    document.querySelector("#kiriban-count").textContent = String(visitCount).padStart(6, "0");
+    const kiribanStep = 100;
+    const kiribanMessage = document.querySelector("#kiriban-message");
+    if (visitCount % kiribanStep === 0) {
+      kiribanMessage.textContent = `☆★ キリ番 ${visitCount} HIT！踏んでくれてぁりがとぉ♪ ★☆`;
+    } else {
+      const remaining = kiribanStep - (visitCount % kiribanStep);
+      kiribanMessage.textContent = `次のキリ番まで、あと${remaining}人！`;
+    }
+
+    const fortunes = [
+      ["大吉", "超ラッキー☆好きな人にメッセ送るとイイことぁるカモ！"],
+      ["中吉", "ぃぃコトありそぅ♪笑顔でぃれば運気アゲ↑"],
+      ["小吉", "マイペースが◎！焦らずぃこぉ☆"],
+      ["吉", "友だちとのおしゃべりがハッピーのカギだょ♪"],
+      ["末吉", "これから運気上昇ちぅ↑明日はもっとイイ日！"],
+      ["凶", "ムリゎ禁物！甘ぃもの食べて元気チャージ☆"]
+    ];
+    document.querySelector("#omikuji-button").addEventListener("click", () => {
+      const [rank, message] = fortunes[Math.floor(Math.random() * fortunes.length)];
+      document.querySelector("#omikuji-result").textContent = `【${rank}】${message}`;
+    });
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -353,7 +419,7 @@
       try {
         await addPost({ nickname, message });
         form.reset();
-        status.textContent = "カキコありがとう♪";
+        status.textContent = "カキコありがとぉ♪";
       } catch (error) {
         console.error("掲示板への投稿に失敗しました。", error);
         status.textContent = "投稿できませんでした。接続やFirebaseの設定をご確認ください。";
@@ -365,7 +431,7 @@
     document.querySelectorAll(".coming-soon").forEach(link => {
       link.addEventListener("click", event => {
         event.preventDefault();
-        status.textContent = "このページは準備中です♪";
+        status.textContent = "このページゎ準備ちぅだょ♪";
       });
     });
   </script>
