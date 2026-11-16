@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ffb5d7">
+  <meta name="theme-color" content="#05030b">
   <title>☆★ ゆめかわ☆ほむぺ ★☆</title>
   <style>
     :root {
-      color-scheme: light;
+      color-scheme: dark;
       font-family: "ＭＳ Ｐゴシック", "MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #ffe8f2;
-      color: #5b3150;
+      background: #05030b;
+      color: #f7efff;
     }
 
     * { box-sizing: border-box; }
@@ -19,39 +19,41 @@
       margin: 0;
       padding: 18px 10px 32px;
       background:
-        radial-gradient(circle, #fff 1px, transparent 1.5px) 0 0 / 14px 14px,
-        #ffe8f2;
+        radial-gradient(circle at 20% 15%, #ff00cc55 0 1px, transparent 2px) 0 0 / 22px 22px,
+        radial-gradient(circle at 80% 75%, #00eaff44 0 1px, transparent 2px) 0 0 / 29px 29px,
+        #05030b;
     }
 
     .phone {
       width: min(100%, 390px);
       margin: 0 auto;
       padding: 12px;
-      border: 3px double #f080b5;
+      border: 2px solid #ff31d2;
       border-radius: 8px;
-      background: #fffafd;
-      box-shadow: 0 5px 18px #d981aa55;
+      background: #10091b;
+      box-shadow: 0 0 8px #ff31d2, 0 0 22px #ff31d288, inset 0 0 18px #781cff22;
     }
 
     .top-note, .counter, footer { text-align: center; }
-    .top-note { font-size: 11px; color: #98617f; }
+    .top-note { font-size: 11px; color: #62f7ff; text-shadow: 0 0 7px #00d9ff; }
 
     h1 {
       margin: 8px 0;
-      color: #e44c9a;
+      color: #ff55df;
       font-size: clamp(22px, 7vw, 29px);
       text-align: center;
-      text-shadow: 2px 2px #ffd6e9;
+      text-shadow: 0 0 5px #ff55df, 0 0 13px #ff00c8, 0 0 24px #ff00c8;
     }
 
-    .subtitle { text-align: center; font-size: 12px; }
+    .subtitle { text-align: center; font-size: 12px; color: #d7a6ff; }
 
     .ticker {
       overflow: hidden;
       margin: 12px 0;
       padding: 6px 0;
-      border-block: 1px dashed #ed81b1;
-      color: #d33f8c;
+      border-block: 1px dashed #00efff;
+      color: #fff36b;
+      text-shadow: 0 0 7px #ffe600;
       white-space: nowrap;
     }
 
@@ -61,15 +63,17 @@
       animation: ticker 13s linear infinite;
     }
 
-    .blink { animation: blink 1s steps(2, start) infinite; color: #ea438f; }
+    .blink { animation: blink 1s steps(2, start) infinite; color: #72ff8d; text-shadow: 0 0 8px #00ff4c; }
 
     @keyframes ticker { to { transform: translateX(-100%); } }
     @keyframes blink { to { visibility: hidden; } }
 
     .welcome {
       padding: 10px;
-      border: 1px dashed #f2a0c4;
-      background: #fff0f7;
+      border: 1px dashed #b44dff;
+      background: #180d29;
+      color: #f7efff;
+      box-shadow: inset 0 0 12px #a000ff33, 0 0 8px #a000ff66;
       font-size: 13px;
       line-height: 1.8;
       text-align: center;
@@ -78,9 +82,10 @@
     .section-title {
       margin: 16px 0 8px;
       padding: 5px 8px;
-      border-left: 5px solid #ee75aa;
-      background: linear-gradient(90deg, #ffe0ee, #fffafd);
-      color: #bd3679;
+      border-left: 5px solid #ff39c8;
+      background: linear-gradient(90deg, #39104f, #10091b);
+      color: #6df7ff;
+      text-shadow: 0 0 8px #00dfff;
       font-size: 16px;
     }
 
@@ -96,48 +101,54 @@
     .menu a {
       display: block;
       padding: 8px 5px;
-      border: 1px solid #f3a5c9;
-      background: #fff;
-      color: #a63b77;
+      border: 1px solid #a950ff;
+      background: #160d24;
+      color: #ff8be8;
+      box-shadow: 0 0 6px #b000ff66, inset 0 0 8px #a000ff22;
       font-size: 13px;
       text-align: center;
       text-decoration: none;
     }
 
-    .menu a:hover, .menu a:focus-visible { background: #ffe4f0; }
-    .menu .bbs-link { background: #ffe4f0; font-weight: bold; }
+    .menu a:hover, .menu a:focus-visible { background: #321143; outline: 1px solid #62f7ff; }
+    .menu .bbs-link { border-color: #00eaff; color: #70fbff; box-shadow: 0 0 8px #00dfff88; font-weight: bold; }
 
     .board {
       padding: 10px;
-      border: 2px ridge #f3a5c9;
-      background: #fff;
+      border: 2px ridge #ff39c8;
+      background: #10091b;
+      box-shadow: 0 0 10px #ff31d255;
     }
 
     .board-intro { margin: 0 0 8px; font-size: 12px; line-height: 1.6; }
-    .connection { margin: 0 0 10px; color: #80546d; font-size: 11px; }
+    .connection { margin: 0 0 10px; color: #62f7ff; font-size: 11px; }
 
-    label { display: block; margin: 8px 0 4px; font-size: 12px; }
+    label { display: block; margin: 8px 0 4px; font-size: 12px; color: #ffe66d; }
 
     input, textarea {
       width: 100%;
       padding: 7px;
-      border: 1px solid #df9cba;
+      border: 1px solid #8a55ff;
       border-radius: 2px;
-      background: #fffafd;
-      color: #4a3040;
+      background: #080510;
+      color: #f7efff;
       font: inherit;
       font-size: 13px;
     }
 
+    input:focus, textarea:focus { outline: 1px solid #00eaff; box-shadow: 0 0 8px #00dfff88; }
+    input::placeholder, textarea::placeholder { color: #a895b8; }
     textarea { min-height: 74px; resize: vertical; }
 
     .submit {
       display: block;
       margin: 9px auto 0;
       padding: 7px 18px;
-      border: 2px outset #f3a5c9;
-      background: #ffe1ef;
-      color: #8f2e65;
+      border: 2px outset #ff39c8;
+      background: #351044;
+      color: #fff36b;
+      text-shadow: 0 0 7px #ffe600;
+      box-shadow: 0 0 9px #ff31d288;
       font: inherit;
       font-size: 13px;
       cursor: pointer;
@@ -151,15 +162,16 @@
     .post {
       margin-top: 8px;
       padding: 8px;
-      border: 1px dotted #e99abd;
-      background: #fff8fc;
+      border: 1px dotted #62f7ff;
+      background: #0b0713;
+      box-shadow: inset 0 0 8px #00dfff22;
       overflow-wrap: anywhere;
     }
 
-    .post-head { color: #b3427c; font-size: 11px; }
+    .post-head { color: #ff75dc; font-size: 11px; }
     .post-message { margin: 5px 0 0; font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
-    .empty { color: #866c7c; font-size: 12px; text-align: center; }
-    footer { margin-top: 15px; color: #98617f; font-size: 10px; line-height: 1.7; }
+    .empty { color: #c6b3d5; font-size: 12px; text-align: center; }
+    footer { margin-top: 15px; color: #62f7ff; text-shadow: 0 0 6px #00dfff; font-size: 10px; line-height: 1.7; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
@@ -225,15 +237,15 @@
     const status = document.querySelector("#status");
     const connection = document.querySelector("#connection");
 
-   // Your web app's Firebase configuration
-  const firebaseConfig = {
-  apiKey: "AIzaSyCIuqrSXKBrfltquAnUQNhQvilA0ZJFDyw",
-  authDomain: "heisei-bbs.firebaseapp.com",
-  projectId: "heisei-bbs",
-  storageBucket: "heisei-bbs.firebasestorage.app",
-  messagingSenderId: "418153985858",
-  appId: "1:418153985858:web:33d8c0c93ac746247cfadb"
-};
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCIuqrSXKBrfltquAnUQNhQvilA0ZJFDyw",
+      authDomain: "heisei-bbs.firebaseapp.com",
+      projectId: "heisei-bbs",
+      storageBucket: "heisei-bbs.firebasestorage.app",
+      messagingSenderId: "418153985858",
+      appId: "1:418153985858:web:33d8c0c93ac746247cfadb"
+    };
 
     function renderPosts(posts) {
       postsList.replaceChildren();
